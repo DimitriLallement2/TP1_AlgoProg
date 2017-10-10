@@ -40,11 +40,34 @@ public class CircularList<Type> {
 	 * 
 	 * @param index
 	 *            indice de l element a supprimer
-	 * @return true si l element a ete supprime sinon false
+	 * @throws IndexOutOfBoundsException
+	 *             {@inheritDoc}
 	 */
-	public boolean remove(int index) {
-		// TODO
-		return false;
+	public void remove(int index) {
+		if (index < items.size()) {
+			if (index == items.size() - 1) {
+				// Si on supprime le dernier element on fait pointer l avant
+				// dernier element sur le premier
+				items.get(index - 1).next = items.get(0);
+			} else {
+				// Sinon on fait pointer l element precedent sur le suivant
+				items.get(index - 1).next = items.get(index + 1);
+
+			}
+			items.remove(index);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString() {
+		String str = "";
+		for (Item item : items) {
+			str += item.toString() + "\n";
+		}
+		return str;
 	}
 
 	private class Item<Type> {

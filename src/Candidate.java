@@ -23,7 +23,8 @@ public class Candidate {
 	/**
 	 * Affiche le prenom et le nom du candidat
 	 */
-	public void print() {
-		System.out.println(firstName + " " + name);
+	@Override
+	public String toString() {
+		return (firstName + " " + name);
 	}
 }
