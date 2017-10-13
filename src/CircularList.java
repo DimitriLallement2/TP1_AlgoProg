@@ -59,6 +59,29 @@ public class CircularList<Type> {
 	}
 
 	/**
+	 * Elit le candidat suivant un schema : on elimine les k-ieme elements de
+	 * façon recursive jusqu a ce qu il ne reste qu un element
+	 * 
+	 * @param k
+	 *            la valeur de cycle de suppression, doit etre inferieur a la
+	 *            taille de la liste
+	 * @return item vainqueur
+	 */
+	public Item electItem(int k) {
+		if (k < items.size()) {
+			// throw Exception e;
+		}
+		Item winner = null;
+		int i = 0;
+		while (items.size() != 1) {
+			i = (i + (k - 1)) % items.size();
+			System.out.println(items.get(i) + " - Elimine");
+			items.remove(i);
+		}
+		return winner;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
