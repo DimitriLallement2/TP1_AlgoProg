@@ -1,3 +1,4 @@
+package exercice_1;
 /**
  * Structure de donnee reprensentant un candidat
  */
@@ -26,5 +27,19 @@ public class Candidate {
 	@Override
 	public String toString() {
 		return (firstName + " " + name);
+	}
+
+	/**
+	 * @return le nom du candidat
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * @return le prenom du candidat
+	 */
+	public String getFirstName() {
+		return this.firstName;
 	}
 }

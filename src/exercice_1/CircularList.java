@@ -1,11 +1,17 @@
+package exercice_1;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Structure de donnees reprensentant une liste chainee circulaire
  */
 public class CircularList<Type> {
+
 	// Liste des elements
 	private ArrayList<Item> items;
+
+	private static Logger logger = Logger.getLogger(CircularList.class.getName());
 
 	/**
 	 * Constructeur par defaut
@@ -41,7 +47,6 @@ public class CircularList<Type> {
 	 * @param index
 	 *            indice de l element a supprimer
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
 	 */
 	public void remove(int index) {
 		if (index < items.size()) {
@@ -55,6 +60,8 @@ public class CircularList<Type> {
 
 			}
 			items.remove(index);
+		} else {
+			logger.log(Level.SEVERE, "L'indice est superieur a la taille de la liste");
 		}
 	}
 
@@ -67,15 +74,16 @@ public class CircularList<Type> {
 	 *            taille de la liste
 	 * @return item vainqueur
 	 */
-	public Item electItem(int k) {
-		if (k < items.size()) {
-			// throw Exception e;
+	public Candidate electItem(int k) {
+		if (k > items.size()) {
+			throw new IllegalArgumentException("k choisi superieur a la taille de la liste");
 		}
-		Item winner = null;
+		Candidate winner = null;
 		int i = 0;
+		// On supprime les elements jusqu a ce qu il en reste plus qu un
 		while (items.size() != 1) {
 			i = (i + (k - 1)) % items.size();
-			System.out.println(items.get(i) + " - Elimine");
+			logger.log(Level.INFO, items.get(i) + "- Elimine");
 			items.remove(i);
 		}
 		return winner;
@@ -95,7 +103,7 @@ public class CircularList<Type> {
 
 	private class Item<Type> {
 		// Prochain element
-		private Item next;
+		private Item<?> next;
 		// Valeur de l element
 		private Type value;
 
@@ -116,6 +124,13 @@ public class CircularList<Type> {
 		@Override
 		public String toString() {
 			return value.toString();
+		}
+
+		/**
+		 * @return la valeur de l item
+		 */
+		public Type getValue() {
+			return this.value;
 		}
 	}
 }
