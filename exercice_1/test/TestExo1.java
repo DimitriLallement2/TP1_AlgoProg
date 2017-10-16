@@ -1,8 +1,8 @@
 package test;
 
-import exercice_1.Candidate;
-import exercice_1.CircularList;
 import junit.framework.TestCase;
+import src.Candidate;
+import src.CircularList;
 
 
 public class TestExo1 extends TestCase {

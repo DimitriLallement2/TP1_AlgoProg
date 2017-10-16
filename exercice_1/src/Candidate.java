@@ -1,4 +1,4 @@
-package exercice_1;
+package src;
 /**
  * Structure de donnee reprensentant un candidat
  */
