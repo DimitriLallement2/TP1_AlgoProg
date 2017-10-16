@@ -61,24 +61,23 @@ public class CircularList<Type> {
 			}
 			items.remove(index);
 		} else {
-			logger.log(Level.SEVERE, "L'indice est superieur a la taille de la liste");
+			throw new IndexOutOfBoundsException("L'indice est superieur a la taille de la liste");
 		}
 	}
 
 	/**
 	 * Elit le candidat suivant un schema : on elimine les k-ieme elements de
-	 * façon recursive jusqu a ce qu il ne reste qu un element
+	 * facon recursive jusqu a ce qu il ne reste qu un element
 	 * 
 	 * @param k
 	 *            la valeur de cycle de suppression, doit etre inferieur a la
 	 *            taille de la liste
 	 * @return item vainqueur
 	 */
-	public Candidate electItem(int k) {
+	public Type electItem(int k) {
 		if (k > items.size()) {
 			throw new IllegalArgumentException("k choisi superieur a la taille de la liste");
 		}
-		Candidate winner = null;
 		int i = 0;
 		// On supprime les elements jusqu a ce qu il en reste plus qu un
 		while (items.size() != 1) {
@@ -86,7 +85,7 @@ public class CircularList<Type> {
 			logger.log(Level.INFO, items.get(i) + "- Elimine");
 			items.remove(i);
 		}
-		return winner;
+		return (Type) items.get(0).value;
 	}
 
 	/**
@@ -100,12 +99,29 @@ public class CircularList<Type> {
 		}
 		return str;
 	}
+	
+	public Item get(int i){
+		if (i >= items.size()){
+			throw new IndexOutOfBoundsException("L'index fourni est superieur a la taille de la liste");
+		}
+		return items.get(i);
+	}
+	
+
+	/**
+	 * @return la valeur de l item
+	 */
+	public Type getValue(Item i) {
+		return (Type) i.value;
+	}
+
 
 	private class Item<Type> {
 		// Prochain element
 		private Item<?> next;
 		// Valeur de l element
 		private Type value;
+
 
 		/**
 		 * Constructeur
@@ -126,11 +142,7 @@ public class CircularList<Type> {
 			return value.toString();
 		}
 
-		/**
-		 * @return la valeur de l item
-		 */
-		public Type getValue() {
-			return this.value;
-		}
 	}
+
+	
 }

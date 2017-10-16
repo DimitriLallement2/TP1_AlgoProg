@@ -7,7 +7,7 @@ public class Launcher {
 			test = new Candidate("" + i, "");
 			list.add(test);
 		}
-		list.electItem(3);
-		System.out.println("Le vainqueur est : " + list);
+		Candidate vainqueur = (Candidate)list.electItem(3);
+		System.out.println("Le vainqueur est : " + vainqueur.getName());
 	}
 }
