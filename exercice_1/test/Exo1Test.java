@@ -5,7 +5,7 @@ import src.Candidate;
 import src.CircularList;
 
 
-public class TestExo1 extends TestCase {
+public class Exo1Test extends TestCase {
 	// Liste de test
 	CircularList<Candidate> list = new CircularList<>();
 
