@@ -1,5 +1,6 @@
 package src;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -81,7 +82,7 @@ public class CircularList<Type> {
 		// On supprime les elements jusqu a ce qu il en reste plus qu un
 		while (items.size() != 1) {
 			i = (i + (k - 1)) % items.size();
-			//logger.log(Level.INFO, items.get(i) + "- Elimine");
+//			logger.log(Level.INFO, items.get(i) + "- Elimine");
 			items.remove(i);
 		}
 		return (Type) items.get(0).value;

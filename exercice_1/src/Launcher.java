@@ -12,7 +12,7 @@ public class Launcher {
 	 */
 	static CircularList<Candidate> initList(int nbCandidates) {
 		CircularList<Candidate> list = new CircularList<>();
-		for (int i = 0; i < nbCandidates; i++) {
+		for (int i = 1; i <= nbCandidates; i++) {
 			list.add(new Candidate("" + i, ""));
 		}
 		return list;
