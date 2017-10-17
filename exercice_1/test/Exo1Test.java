@@ -4,7 +4,6 @@ import junit.framework.TestCase;
 import src.Candidate;
 import src.CircularList;
 
-
 public class Exo1Test extends TestCase {
 	// Liste de test
 	CircularList<Candidate> list = new CircularList<>();
@@ -16,10 +15,13 @@ public class Exo1Test extends TestCase {
 			test = new Candidate("" + i, "");
 			list.add(test);
 		}
-//		list.electItem(8);
+		// list.electItem(8);
 		// TODO FINISH
 	}
-		
+
+	/**
+	 * Test correspondant a la question d)
+	 */
 	public final void testBasic() {
 		Candidate test;
 		for (int i = 1; i <= 7; i++) {

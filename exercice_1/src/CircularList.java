@@ -1,6 +1,5 @@
 package src;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -10,7 +9,7 @@ public class CircularList<Type> {
 
 	// Liste des elements
 	private ArrayList<Item> items;
-
+	// Logger de la classe
 	private static Logger logger = Logger.getLogger(CircularList.class.getName());
 
 	/**
@@ -100,11 +99,18 @@ public class CircularList<Type> {
 		return str;
 	}
 	
-	public Item get(int i){
-		if (i >= items.size()){
-			throw new IndexOutOfBoundsException("L'index fourni est superieur a la taille de la liste");
+	/**
+	 * Retourne l item de la liste d indice index
+	 * 
+	 * @param index
+	 *            indice inferieur a la taille de la liste
+	 * @return item
+	 */
+	public Item get(int index) {
+		if (index >= items.size()) {
+			throw new IndexOutOfBoundsException("L index fourni est superieur a la taille de la liste");
 		}
-		return items.get(i);
+		return items.get(index);
 	}
 	
 
@@ -115,7 +121,11 @@ public class CircularList<Type> {
 		return (Type) i.value;
 	}
 
-
+	/**
+	 * Structure de donne representant une cellule de la liste
+	 *
+	 * @param <Type>
+	 */
 	private class Item<Type> {
 		// Prochain element
 		private Item<?> next;

@@ -5,6 +5,11 @@ public class Launcher {
 		elections();
 	}
 
+	/**
+	 * @param nbCandidates
+	 *            nombre de candidat a l election
+	 * @return la liste initialisee
+	 */
 	static CircularList<Candidate> initList(int nbCandidates) {
 		CircularList<Candidate> list = new CircularList<>();
 		for (int i = 0; i < nbCandidates; i++) {
@@ -13,6 +18,9 @@ public class Launcher {
 		return list;
 	}
 
+	/**
+	 * Simulation des elections de la question e)
+	 */
 	static void elections() {
 		Object[] lists = new Object[4];
 		for (int i = 0; i < 4; i++) {
