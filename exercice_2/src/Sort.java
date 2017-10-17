@@ -7,7 +7,11 @@ public abstract class Sort {
 	 * @param tab
 	 *            le tableau trie
 	 */
-	public abstract void sort(int[] tab);
+	public void sort(int[] tab){
+		if (tab == null || tab.length < 2) {
+			throw new IllegalArgumentException("Tableau null ou taille invalide");
+		}
+	}
 
 	/**
 	 * Permutte deux elements dans un tableau
