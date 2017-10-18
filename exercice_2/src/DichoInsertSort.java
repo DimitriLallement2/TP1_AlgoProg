@@ -8,6 +8,7 @@ public class DichoInsertSort extends Sort{
 	@Override
 	public void sort(int[] tab){
 		super.sort(tab);
+		long startTime = System.currentTimeMillis();
 		int indSort, tmp;
 		int a, b, m;
 		
@@ -34,6 +35,8 @@ public class DichoInsertSort extends Sort{
 			}
 			tab[indSort] = tmp;
 		}
+		long endTime = System.currentTimeMillis();
+		runtime = endTime - startTime;
 	}
 	
 }

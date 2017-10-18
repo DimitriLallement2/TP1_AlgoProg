@@ -1,6 +1,16 @@
 package src;
 
 public abstract class Sort {
+	
+	// Compteur du nombre de comparaisons
+	protected int comparisons = 0;
+
+	// Compteur du nombre d affectation
+	protected int assignments = 0;
+	
+	// Temps d execution du tri
+	protected long runtime = 0;
+	
 	/**
 	 * Trie un tableau d entier dans l ordre croissant des elements
 	 * 
@@ -8,6 +18,7 @@ public abstract class Sort {
 	 *            le tableau trie
 	 */
 	public void sort(int[] tab) {
+		resetCpt();
 		if (tab == null || tab.length < 2) {
 			throw new IllegalArgumentException("Tableau null ou taille invalide");
 		}
@@ -34,4 +45,36 @@ public abstract class Sort {
 		tab[index1] = tab[index2];
 		tab[index2] = tmp;
 	}
+	
+	/**
+	 * Reinitialise les compteurs de comparaisions, d affectations et de temps d execution
+	 */
+	public void resetCpt(){
+		comparisons = 0;
+		assignments = 0;
+		runtime = 0;
+	}
+
+	/**
+	 * @return le nombre de comparaisons
+	 */
+	public int getComparisons() {
+		return comparisons;
+	}
+
+	/**
+	 * @return le nombre d affectations
+	 */
+	public int getAssignments() {
+		return assignments;
+	}
+
+	/**
+	 * @return le temps d execution du tri
+	 */
+	public long getRuntime() {
+		return runtime;
+	}
+	
+	
 }

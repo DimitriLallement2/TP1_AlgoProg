@@ -7,10 +7,12 @@ public class ShakerSort extends Sort {
 
 	/**
 	 * {@inheritDoc}
+	 * Algorithme inspiree de wikipedia
 	 */
 	@Override
 	public void sort(int[] tab) {
 		super.sort(tab);
+		long startTime = System.currentTimeMillis();
 		int start = 0;
 		int end = tab.length - 2;
 		boolean changed = true;
@@ -31,5 +33,7 @@ public class ShakerSort extends Sort {
 			}
 			start++;
 		}
+		long endTime = System.currentTimeMillis();
+		runtime = endTime - startTime;
 	}
 }
