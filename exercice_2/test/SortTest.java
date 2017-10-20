@@ -7,6 +7,7 @@ import src.DichoInsertSort;
 import src.ShakerSort;
 import src.ShellSort;
 import src.Sort;
+import src.Tools;
 
 public class SortTest extends TestCase {
 	// Trieur
@@ -190,5 +191,32 @@ public class SortTest extends TestCase {
 			  }catch(IllegalArgumentException e){
 			    assert(e.getMessage().contains("Tableau null ou taille invalide"));
 			  }
+	}
+	
+	/**
+	 * Test du generateur de tableau
+	 */
+	public final void testRandomArray(){
+		int[] tab = Tools.generateRandomArray(3, -1, 5);
+		assertTrue("Taille validee", tab.length == 3);
+		assertTrue("valeur comprise entre les bornes", tab[0] <= 5 && tab[0] >= -1);
+	}
+	
+	/**
+	 * Test des cas limites generateur de tableau
+	 */
+	public final void testBadArgumentsRandomArray(){
+		 try {
+				Tools.generateRandomArray(0, -1, 5);
+			    fail("Devrait lever une exception quand la taille du tableau est inferieure a 1");
+			  }catch(IllegalArgumentException e){
+			    assert(e.getMessage().contains("Taille du tableau invalide"));
+			  }		
+		 try {
+					Tools.generateRandomArray(2, 4, 1);
+				    fail("Devrait lever une exception quand les bornes sont invalides (low > high)");
+				  }catch(IllegalArgumentException e){
+				    assert(e.getMessage().contains("borne inferieur invalide"));
+				  }
 	}
 }
