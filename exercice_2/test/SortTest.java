@@ -5,6 +5,7 @@ import java.util.Arrays;
 import junit.framework.TestCase;
 import src.DichoInsertSort;
 import src.ShakerSort;
+import src.ShellSort;
 import src.Sort;
 
 public class SortTest extends TestCase {
@@ -27,6 +28,17 @@ public class SortTest extends TestCase {
 	}
 	
 	/**
+	 * Test du tri Shell Sort
+	 */
+	public final void testShellSort() {
+		s = new ShellSort();
+		int[] tmp = tab;
+		s.sort(tmp);
+		System.out.println(Arrays.equals(expected, tmp));
+		assertTrue("Tri Shell Sort", Arrays.equals(expected, tmp));
+	}
+	
+	/**
 	 * Test du tri bulle melange
 	 */
 	public final void testSortShaker() {
@@ -37,10 +49,10 @@ public class SortTest extends TestCase {
 	}
 	
 	/**
-	 * Test du tri bulle melange avec tableau vide
+	 * Test du tri Shell Sort avec tableau vide
 	 */
-	public final void testSortShakerEmptyArr() {
-		s = new ShakerSort();
+	public final void testShellSortEmptyArr() {
+		s = new ShellSort();
 		int[] tmp = null;
 		 try {
 			    s.sort(tmp);
@@ -50,6 +62,21 @@ public class SortTest extends TestCase {
 			  }
 	}
 	
+	/**
+	 * Test du tri Shell Sort avec un seul element
+	 */
+	public final void testShellSortArrOneElement() {
+		s = new ShellSort();
+		int[] tmp = {1};
+		 try {
+			    s.sort(tmp);
+			    fail("Devrait lever une exception quand le tableau ne contient qu un element");
+			  }catch(IllegalArgumentException e){
+			    assert(e.getMessage().contains("Tableau null ou taille invalide"));
+			  }
+	}
+	
+
 	/**
 	 * Test du tri par insertion dichotomique avec tableau vide
 	 */
@@ -77,6 +104,23 @@ public class SortTest extends TestCase {
 			    assert(e.getMessage().contains("Tableau null ou taille invalide"));
 			  }
 	}
+	
+	
+	
+	/**
+	 * Test du tri bulle melange avec tableau vide
+	 */
+	public final void testSortShakerEmptyArr() {
+		s = new ShakerSort();
+		int[] tmp = null;
+		 try {
+			    s.sort(tmp);
+			    fail("Devrait lever une exception quand le tableau est vide");
+			  }catch(IllegalArgumentException e){
+			    assert(e.getMessage().contains("Tableau null ou taille invalide"));
+			  }
+	}
+	
 	
 	/**
 	 * Test du tri bulle melange avec un seul element
