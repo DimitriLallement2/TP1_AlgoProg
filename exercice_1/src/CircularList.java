@@ -1,6 +1,5 @@
 package src;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -75,8 +74,8 @@ public class CircularList<Type> {
 	 * @return item vainqueur
 	 */
 	public Type electItem(int k) {
-		if (k > items.size()) {
-			throw new IllegalArgumentException("k choisi superieur a la taille de la liste");
+		if (k < 0) {
+			throw new IllegalArgumentException("Le parametre k doit etre superieur a 0");
 		}
 		int i = 0;
 		// On supprime les elements jusqu a ce qu il en reste plus qu un

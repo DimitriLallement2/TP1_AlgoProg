@@ -33,14 +33,14 @@ public class Exo1Test extends TestCase {
 			test = new Candidate("" + i, "");
 			list.add(test);
 		}
-		 try {
-				list.electItem(8);
-			    fail("Devrait lever une exception quand k est superieur a la taille de la liste");
-			  }catch(IllegalArgumentException e){
-			    assert(e.getMessage().contains("k choisi superieur a la taille de la liste"));
-			  }
+		try {
+			list.electItem(-1);
+			fail("Devrait lever une exception quand k est inferieur a 0");
+		} catch (IllegalArgumentException e) {
+			assert (e.getMessage().contains("Le parametre k doit etre superieur a 0"));
+		}
 	}
-	
+
 	/**
 	 * Indice superieur a la taille de la liste
 	 */
