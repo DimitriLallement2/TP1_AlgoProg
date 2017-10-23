@@ -4,6 +4,7 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		elections();
+//		election7Candidates();
 	}
 
 	/**
@@ -17,6 +18,17 @@ public class Launcher {
 			list.add(new Candidate("" + i, ""));
 		}
 		return list;
+	}
+	
+	/**
+	 * Simulation de l election entre 7 candidats pour k valant 3
+	 */
+	static void election7Candidates(){
+		CircularList<Candidate> list = new CircularList<>();
+		for (int i = 1; i <= 7; i++) {
+			list.add(new Candidate("Candidat " + i, ""));
+		}
+		System.out.println("Le candidat vainqueur est : " + list.electItem(3).getName());
 	}
 
 	/**
