@@ -1,5 +1,8 @@
 package src;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -7,8 +10,10 @@ import java.util.logging.Logger;
  */
 public class CircularList<Type> {
 
-	// Liste des elements
-	private ArrayList<Item> items;
+	// Premier element
+	private Item last;
+	// Taille de la liste
+	private int size;
 	// Logger de la classe
 	private static Logger logger = Logger.getLogger(CircularList.class.getName());
 
@@ -16,7 +21,7 @@ public class CircularList<Type> {
 	 * Constructeur par defaut
 	 */
 	public CircularList() {
-		items = new ArrayList<>();
+		size = 0;
 	}
 
 	/**
@@ -28,16 +33,20 @@ public class CircularList<Type> {
 	 * 
 	 */
 	public boolean add(Type value) {
-		if (items.isEmpty()) {
-			return items.add(new Item<Type>(value));
+		// liste vide
+		if (size == 0) {
+			last = new Item<Type>(value);
+			// On fait pointer l element sur lui meme
+			last.next = last;
 		} else {
-			items.add(new Item<Type>(value));
-			// L avant dernier element pointe sur l element ajoute
-			items.get(items.size() - 2).next = items.get(items.size() - 1);
-			// Le dernier element ajoute pointe vers le premier element
-			items.get(items.size() - 1).next = items.get(0);
-			return true;
+			Item<Type> tmp = new Item<Type>(value);
+			// L element ajoute pointe sur le premier elt
+			tmp.next = last.next;
+			last.next = tmp;
+			last = tmp;
 		}
+		size++;
+		return true;
 	}
 
 	/**
@@ -48,19 +57,28 @@ public class CircularList<Type> {
 	 * @throws IndexOutOfBoundsException
 	 */
 	public void remove(int index) {
-		if (index < items.size()) {
-			if (index == items.size() - 1) {
-				// Si on supprime le dernier element on fait pointer l avant
-				// dernier element sur le premier
-				items.get(index - 1).next = items.get(0);
-			} else {
-				// Sinon on fait pointer l element precedent sur le suivant
-				items.get(index - 1).next = items.get(index + 1);
-
-			}
-			items.remove(index);
+		if (index > size || index < 0) {
+			throw new IndexOutOfBoundsException("L indice est invalide");
 		} else {
-			throw new IndexOutOfBoundsException("L'indice est superieur a la taille de la liste");
+
+			if (size == 1) {
+				// Un seul element restant
+				this.last = null;
+			} else {
+				// Cas general
+				Item tmp = last;
+				// On parcourt la liste jusqu a l indice donne en parametre -1
+				for (int i = 0; i < index; i++) {
+					tmp = tmp.next;
+				}
+				//On met a jour le last si besoin
+				if(tmp.next == last){
+					last = tmp;
+				}
+				// on fait pointer l element precedent sur le suivant
+				tmp.next = tmp.next.next;
+			}
+			size--;
 		}
 	}
 
@@ -79,26 +97,30 @@ public class CircularList<Type> {
 		}
 		int i = 0;
 		// On supprime les elements jusqu a ce qu il en reste plus qu un
-		while (items.size() != 1) {
-			i = (i + (k - 1)) % items.size();
-//			logger.log(Level.INFO, items.get(i) + "- Elimine");
-			items.remove(i);
+		while (size != 1) {
+			i = (i + (k-1)) % size;
+//			logger.log(Level.INFO, get(i) + "- Elimine");
+			remove(i);
 		}
-		return (Type) items.get(0).value;
+		return (Type) last.value;
 	}
 
 	/**
 	 * {@inheritDoc}
+	 * Pour value il faut avoir surcharger le toString
 	 */
 	@Override
 	public String toString() {
 		String str = "";
-		for (Item item : items) {
-			str += item.toString() + "\n";
+		//premier elt
+		Item tmp = last.next;
+		for(int i = 0; i < size; i++){
+			str += tmp.value.toString() + "\n";
+			tmp = tmp.next;
 		}
 		return str;
 	}
-	
+
 	/**
 	 * Retourne l item de la liste d indice index
 	 * 
@@ -107,12 +129,15 @@ public class CircularList<Type> {
 	 * @return item
 	 */
 	public Item get(int index) {
-		if (index >= items.size()) {
+		if (index >= size) {
 			throw new IndexOutOfBoundsException("L index fourni est superieur a la taille de la liste");
 		}
-		return items.get(index);
+		Item tmp = last.next;
+		for(int i = 0; i < index; i++){
+			tmp = tmp.next;
+		}
+		return tmp;
 	}
-	
 
 	/**
 	 * @return la valeur de l item
@@ -131,7 +156,6 @@ public class CircularList<Type> {
 		private Item<?> next;
 		// Valeur de l element
 		private Type value;
-
 
 		/**
 		 * Constructeur
@@ -154,5 +178,4 @@ public class CircularList<Type> {
 
 	}
 
-	
 }

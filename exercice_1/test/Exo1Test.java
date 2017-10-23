@@ -24,7 +24,7 @@ public class Exo1Test extends TestCase {
 	}
 	
 	/**
-	 * K superieur a la taille de la liste
+	 * K inferieur a 0
 	 */
 	public final void testIllegalParamater() {
 		CircularList<Candidate> list = new CircularList<>();
@@ -40,7 +40,7 @@ public class Exo1Test extends TestCase {
 			assert (e.getMessage().contains("Le parametre k doit etre superieur a 0"));
 		}
 	}
-
+	
 	/**
 	 * Indice superieur a la taille de la liste
 	 */
