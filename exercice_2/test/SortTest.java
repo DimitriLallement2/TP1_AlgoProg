@@ -24,7 +24,6 @@ public class SortTest extends TestCase {
 		s = new DichoInsertSort();
 		int[] tmp = tab;
 		s.sort(tmp);
-		System.out.println(Arrays.equals(expected, tmp));
 		assertTrue("Tri par Insertion Dichotomique", Arrays.equals(expected, tmp));
 	}
 	
@@ -35,7 +34,6 @@ public class SortTest extends TestCase {
 		s = new ShellSort();
 		int[] tmp = tab;
 		s.sort(tmp);
-		System.out.println(Arrays.equals(expected, tmp));
 		assertTrue("Tri Shell Sort", Arrays.equals(expected, tmp));
 	}
 	

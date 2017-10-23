@@ -3,12 +3,12 @@ package src;
 public abstract class Sort {
 
 	// Compteur du nombre de comparaisons
-	protected int comparisons;
+	protected long comparisons;
 
-	// Compteur du nombre d affectation
-	protected int assignments;
+	// Compteur du nombre d affectations
+	protected long assignments;
 
-	// Temps d execution du tri
+	// Temps d execution du tri en milliseoncdes
 	protected long runtime;
 
 	/**
@@ -61,14 +61,14 @@ public abstract class Sort {
 	/**
 	 * @return le nombre de comparaisons
 	 */
-	public int getComparisons() {
+	public long getComparisons() {
 		return comparisons;
 	}
 
 	/**
 	 * @return le nombre d affectations
 	 */
-	public int getAssignments() {
+	public long getAssignments() {
 		return assignments;
 	}
 
