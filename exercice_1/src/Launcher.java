@@ -5,6 +5,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		elections();
 //		election7Candidates();
+		// stats();
 	}
 
 	/**
@@ -60,4 +61,16 @@ public class Launcher {
 		}
 	}
 
+	/**
+	 * Simulation des elections de la question f) pour k variant de 1 a 200 et n
+	 * = 100
+	 */
+	static void stats() {
+		CircularList<Candidate> list = new CircularList<Candidate>();
+		for (int k = 1; k < 201; k++) {
+			list = initList(100);
+			list.electItem(k);
+			System.out.println("k = " + k + ", iterations = " + list.getIterator());
+		}
+	}
 }

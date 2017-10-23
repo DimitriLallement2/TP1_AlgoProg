@@ -1,6 +1,5 @@
 package src;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -14,12 +13,15 @@ public class CircularList<Type> {
 	private int size;
 	// Logger de la classe
 	private static Logger logger = Logger.getLogger(CircularList.class.getName());
+	// Nombre de tour de boucle
+	private int iterator = 0;
 
 	/**
 	 * Constructeur par defaut
 	 */
 	public CircularList() {
 		size = 0;
+		iterator = 0;
 	}
 
 	/**
@@ -75,12 +77,14 @@ public class CircularList<Type> {
 	 * @return item vainqueur
 	 */
 	public Type electItem(int k) {
+		iterator = 0;
 		if (k < 0) {
 			throw new IllegalArgumentException("Le parametre k doit etre superieur a 0");
 		}
 		// On supprime les elements jusqu a ce qu il en reste plus qu un
 		while (this.size != 1) {
 			for (int i=0 ; i < ((k - 1)%this.size) ; i++){
+				iterator++;
 				this.cur = this.cur.next;
 			}
 //			logger.log(Level.INFO, this.cur.next.value + "- Elimine");
@@ -102,6 +106,13 @@ public class CircularList<Type> {
 			tmp = tmp.next;
 		}
 		return str;
+	}
+
+	/**
+	 * @return le nombre de tour de boucle pour une election
+	 */
+	public int getIterator() {
+		return iterator;
 	}
 
 	
