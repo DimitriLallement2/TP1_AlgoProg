@@ -1,14 +1,10 @@
 package src;
 
-import java.util.Random;
-
 public class LauncherExo2 {
 
 	public static void main(String[] args) {
-		trisTaillesCroissantes(2, 10, 1);
-		trisTaillesCroissantes(100, 1000, 100);
-		trisTaillesCroissantes(1000, 10000, 1000);
-		trisTaillesCroissantes(10000, 100000, 10000);
+		trisTaillesCroissantes(10, 10010, 1000);
+		trisTaillesCroissantes(20010, 100000, 10000);
 	}
 	
 	/**
