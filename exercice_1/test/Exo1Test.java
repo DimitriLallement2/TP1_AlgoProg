@@ -41,18 +41,4 @@ public class Exo1Test extends TestCase {
 		}
 	}
 	
-	/**
-	 * Indice superieur a la taille de la liste
-	 */
-	public final void testOutOfBound() {
-		CircularList<Candidate> list = new CircularList<>();
-		Candidate test = new Candidate("" , "");
-		list.add(test);
-		 try {
-				list.get(2);
-			    fail("Devrait lever une exception quand l indice de la liste est superieur a sa taille");
-			  }catch(IndexOutOfBoundsException e){
-			    assert(e.getMessage().contains("L index fourni est superieur a la taille de la liste"));
-			  }
-	}
 }
